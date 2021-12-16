@@ -1,0 +1,54 @@
+==================
+Solitary comment
+==================
+
+// test comment
+
+---
+
+(source_file
+    (comment))
+
+==================
+Go directive with preceding comment
+==================
+
+// test comment
+go 1.14
+
+---
+
+(source_file
+    (comment)
+	(go_directive
+		(go_version)))
+
+==================
+Go directive with trailing comment
+==================
+
+go 1.14 // test comment
+
+---
+
+(source_file
+	(go_directive
+		(go_version)
+        (comment)))
+
+==================
+Replace directive with comment
+==================
+
+replace golang.org/x/net v1.2.3 => example.com/fork/net v1.4.5 //test comment
+
+---
+
+(source_file
+	(replace_directive
+		(replace_spec
+			(module_path)
+			(version)
+			(module_path)
+			(version)
+            (comment))))
