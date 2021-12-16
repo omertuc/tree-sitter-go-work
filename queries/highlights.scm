@@ -1,10 +1,7 @@
 [
-  "require"
   "replace"
   "go"
-  "exclude"
-  "retract"
-  "module"
+  "use"
 ] @keyword
 
 "=>" @operator
