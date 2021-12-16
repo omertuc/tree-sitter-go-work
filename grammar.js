@@ -9,12 +9,9 @@ module.exports = grammar({
 
     _directive: ($) =>
       choice(
-        $.module_directive,
         $.go_directive,
-        $.require_directive,
-        $.exclude_directive,
+        $.use_directive,
         $.replace_directive,
-        $.retract_directive
       ),
 
     _string_literal: ($) =>
@@ -53,35 +50,7 @@ module.exports = grammar({
     go_version: ($) => $._string_or_ident,
     version: ($) => $._string_or_ident,
 
-    module_directive: ($) =>
-      seq(
-        "module",
-        choice($.module_path, seq("(", "\n", $.module_path, "\n", ")"))
-      ),
-
     go_directive: ($) => seq("go", $.go_version, "\n"),
-
-    require_directive: ($) =>
-      seq(
-        "require",
-        choice(
-          $.require_spec,
-          seq("(", "\n", repeat($.require_spec), ")", "\n")
-        )
-      ),
-
-    require_spec: ($) => seq($.module_path, $.version, "\n"),
-
-    exclude_directive: ($) =>
-      seq(
-        "exclude",
-        choice(
-          $.exclude_spec,
-          seq("(", "\n", repeat($.exclude_spec), ")", "\n")
-        )
-      ),
-
-    exclude_spec: ($) => seq($.module_path, $.version, "\n"),
 
     replace_directive: ($) =>
       seq(
@@ -105,22 +74,19 @@ module.exports = grammar({
         )
       ),
 
-    file_path: ($) => $._identifier,
-
-    retract_directive: ($) =>
+    use_directive: ($) =>
       seq(
-        "retract",
+        "use",
         choice(
-          seq("(", "\n", repeat($.retract_spec), ")", "\n"),
-          $.retract_spec
+          $.use_spec,
+          seq("(", "\n", repeat($.use_spec), ")", "\n")
         )
       ),
 
-    retract_spec: ($) =>
-      seq(
-        choice(seq("[", $.version, prec(1, ","), $.version, "]"), $.version),
-        "\n"
-      ),
+    use_spec: ($) =>
+      seq($.file_path, "\n"),
+
+    file_path: ($) => $._identifier,
 
     comment: ($) => seq("//", /.*/),
   },
