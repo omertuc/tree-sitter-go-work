@@ -1,4 +1,3 @@
-// https://golang.org/ref/mod#go-work-file-grammar
 module.exports = grammar({
   name: "gowork",
 
