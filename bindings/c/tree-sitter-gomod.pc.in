@@ -1,0 +1,11 @@
+prefix=@PREFIX@
+libdir=@LIBDIR@
+includedir=@INCLUDEDIR@
+additionallibs=@ADDITIONALLIBS@
+
+Name: tree-sitter-gowork
+Description: tree-sitter grammar for go.work files
+URL: https://github.com/omertuc/tree-sitter-go-work
+Version: @VERSION@
+Libs: -L${libdir} ${additionallibs} -ltree-sitter-gowork
+Cflags: -I${includedir}

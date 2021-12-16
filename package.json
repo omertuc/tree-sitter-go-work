@@ -1,0 +1,29 @@
+{
+  "name": "tree-sitter-go-work",
+  "version": "0.1.0",
+  "description": "A tree-sitter grammar for go.work files",
+  "main": "bindings/node",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/omertuc/tree-sitter-go-work.git"
+  },
+  "keywords": [
+    "tree-sitter",
+    "go"
+  ],
+  "author": "Omer Tuchfeld <omer@tuchfeld.dev>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/omertuc/tree-sitter-go-work/issues"
+  },
+  "homepage": "https://github.com/omertuc/tree-sitter-go-work#readme",
+  "dependencies": {
+    "nan": "^2.14.2"
+  },
+  "devDependencies": {
+    "tree-sitter-cli": "^0.19.4"
+  }
+}
