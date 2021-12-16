@@ -1,0 +1,25 @@
+==================
+All directives
+==================
+
+// comment
+
+go 1.14
+
+use ./somemodule
+
+replace golang.org/x/net => ./fork/net
+
+---
+
+(source_file
+    (comment)
+	(go_directive
+		(go_version))
+	(use_directive
+		(use_spec
+			(file_path)))
+	(replace_directive
+		(replace_spec
+			(module_path)
+			(file_path))))
