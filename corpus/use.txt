@@ -1,0 +1,38 @@
+==================
+Use directive
+==================
+
+use ./somemodule
+
+---
+
+(source_file
+	(use_directive
+		(use_spec
+			(file_path))))
+
+==================
+Use directive parens
+==================
+
+
+use (
+    ./somemodule
+    ./someothermodule // Some comment
+    ./somemoremodules
+    ./evenmoremodules
+)
+
+---
+
+(source_file
+	(use_directive
+		(use_spec
+			(file_path))
+		(use_spec
+			(file_path)
+			(comment))
+		(use_spec
+			(file_path))
+		(use_spec
+			(file_path))))
