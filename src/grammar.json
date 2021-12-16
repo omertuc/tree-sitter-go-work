@@ -13,27 +13,15 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "module_directive"
-        },
-        {
-          "type": "SYMBOL",
           "name": "go_directive"
         },
         {
           "type": "SYMBOL",
-          "name": "require_directive"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "exclude_directive"
+          "name": "use_directive"
         },
         {
           "type": "SYMBOL",
           "name": "replace_directive"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "retract_directive"
         }
       ]
     },
@@ -178,49 +166,6 @@
       "type": "SYMBOL",
       "name": "_string_or_ident"
     },
-    "module_directive": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "module"
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "module_path"
-            },
-            {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "STRING",
-                  "value": "("
-                },
-                {
-                  "type": "STRING",
-                  "value": "\n"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "module_path"
-                },
-                {
-                  "type": "STRING",
-                  "value": "\n"
-                },
-                {
-                  "type": "STRING",
-                  "value": ")"
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
     "go_directive": {
       "type": "SEQ",
       "members": [
@@ -231,132 +176,6 @@
         {
           "type": "SYMBOL",
           "name": "go_version"
-        },
-        {
-          "type": "STRING",
-          "value": "\n"
-        }
-      ]
-    },
-    "require_directive": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "require"
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "require_spec"
-            },
-            {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "STRING",
-                  "value": "("
-                },
-                {
-                  "type": "STRING",
-                  "value": "\n"
-                },
-                {
-                  "type": "REPEAT",
-                  "content": {
-                    "type": "SYMBOL",
-                    "name": "require_spec"
-                  }
-                },
-                {
-                  "type": "STRING",
-                  "value": ")"
-                },
-                {
-                  "type": "STRING",
-                  "value": "\n"
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    "require_spec": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "module_path"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "version"
-        },
-        {
-          "type": "STRING",
-          "value": "\n"
-        }
-      ]
-    },
-    "exclude_directive": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "exclude"
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "exclude_spec"
-            },
-            {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "STRING",
-                  "value": "("
-                },
-                {
-                  "type": "STRING",
-                  "value": "\n"
-                },
-                {
-                  "type": "REPEAT",
-                  "content": {
-                    "type": "SYMBOL",
-                    "name": "exclude_spec"
-                  }
-                },
-                {
-                  "type": "STRING",
-                  "value": ")"
-                },
-                {
-                  "type": "STRING",
-                  "value": "\n"
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    "exclude_spec": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "module_path"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "version"
         },
         {
           "type": "STRING",
@@ -485,20 +304,20 @@
         }
       ]
     },
-    "file_path": {
-      "type": "SYMBOL",
-      "name": "_identifier"
-    },
-    "retract_directive": {
+    "use_directive": {
       "type": "SEQ",
       "members": [
         {
           "type": "STRING",
-          "value": "retract"
+          "value": "use"
         },
         {
           "type": "CHOICE",
           "members": [
+            {
+              "type": "SYMBOL",
+              "name": "use_spec"
+            },
             {
               "type": "SEQ",
               "members": [
@@ -514,7 +333,7 @@
                   "type": "REPEAT",
                   "content": {
                     "type": "SYMBOL",
-                    "name": "retract_spec"
+                    "name": "use_spec"
                   }
                 },
                 {
@@ -526,61 +345,27 @@
                   "value": "\n"
                 }
               ]
-            },
-            {
-              "type": "SYMBOL",
-              "name": "retract_spec"
             }
           ]
         }
       ]
     },
-    "retract_spec": {
+    "use_spec": {
       "type": "SEQ",
       "members": [
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "STRING",
-                  "value": "["
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "version"
-                },
-                {
-                  "type": "PREC",
-                  "value": 1,
-                  "content": {
-                    "type": "STRING",
-                    "value": ","
-                  }
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "version"
-                },
-                {
-                  "type": "STRING",
-                  "value": "]"
-                }
-              ]
-            },
-            {
-              "type": "SYMBOL",
-              "name": "version"
-            }
-          ]
+          "type": "SYMBOL",
+          "name": "file_path"
         },
         {
           "type": "STRING",
           "value": "\n"
         }
       ]
+    },
+    "file_path": {
+      "type": "SYMBOL",
+      "name": "_identifier"
     },
     "comment": {
       "type": "SEQ",
