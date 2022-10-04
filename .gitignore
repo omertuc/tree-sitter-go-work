@@ -5,7 +5,9 @@ build
 package-lock.json
 target
 
-*.a
-*.dylib
-*.so
+/*.a
+/*.dylib
+/*.so*
 *.o
+/bindings/c/*.h
+/bindings/c/tree-sitter-*.pc

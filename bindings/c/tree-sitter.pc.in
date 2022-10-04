@@ -3,9 +3,9 @@ libdir=@LIBDIR@
 includedir=@INCLUDEDIR@
 additionallibs=@ADDITIONALLIBS@
 
-Name: tree-sitter-gowork
+Name: tree-sitter-@PARSERNAME@
 Description: tree-sitter grammar for go.work files
-URL: https://github.com/omertuc/tree-sitter-go-work
+URL: @PARSERURL@
 Version: @VERSION@
-Libs: -L${libdir} ${additionallibs} -ltree-sitter-gowork
+Libs: -L${libdir} ${additionallibs} -ltree-sitter-@PARSERNAME@
 Cflags: -I${includedir}
